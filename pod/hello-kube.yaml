@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-kube
+spec:
+  containers:
+    - image: hero2510/hello-kube
+      name: hello-kube
+      ports:
+        - containerPort: 3000
+          protocol: TCP
