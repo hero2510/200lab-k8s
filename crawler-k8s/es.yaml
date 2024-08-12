@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-headless
+spec:
+  clusterIP: None
+  ports:
+    - port: 9092
+  selector:
+    app: elasticsearch
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+spec:
+  replicas: 1
+  serviceName: "elasticsearch-headless"
+  selector:
+    matchLabels:
+      app: elasticsearch
+  template:
+    metadata:
+      labels:
+        app: elasticsearch
+    spec:
+      containers:
+        - name: elasticsearch
+          image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+          volumeMounts:
+            - name: elasticsearch-data
+              mountPath: /usr/share/elasticsearch/data
+          envFrom:
+            - configMapRef:
+                name: es-config
+          ports:
+            - containerPort: 9200
+  volumeClaimTemplates:
+    - metadata:
+        name: elasticsearch-data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
