@@ -36,7 +36,7 @@ data:
       K8S-Logging.Exclude On
 
     [FILTER]
-      Name  grep
+      Name grep
       Match kube.*
       Exclude $kubernetes['namespace_name'] logging
 

@@ -5,8 +5,6 @@ metadata:
   namespace: logging
   labels:
     k8s-app: fluent-bit
-  annotations:
-    fluentbit.io/exclude: 'true'
 spec:
   selector:
     matchLabels:
@@ -15,8 +13,6 @@ spec:
     metadata:
       labels:
         name: fluent-bit
-      annotations:
-        fluentbit.io/exclude: "true"
     spec:
       containers:
       - name: fluent-bit

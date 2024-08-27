@@ -42,4 +42,4 @@ config:
         Index nginx-log
         Suppress_Type_Name On
         HTTP_User elastic
-        HTTP_Passwd yvq831sYEDaMZcVe
+        HTTP_Passwd 4cbCBHydy3zFXES8%
