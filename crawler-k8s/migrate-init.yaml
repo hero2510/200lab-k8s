@@ -11,7 +11,7 @@ spec:
     spec:
       restartPolicy: OnFailure
       containers:
-        - image: hero2510/migrate-app:arm-v1
+        - image: hero2510/migrate-app
           name: migrate-init
           command:
             - "/app/run"
